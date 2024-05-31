@@ -30,7 +30,7 @@ def test_graph(path):
     res = graph.max_flow_edmonds_karp(0, N - 1)
     stop = default_timer()
     res_nx = nx.maximum_flow_value(graph_nx, 0, N - 1, capacity="capacity")
-    print(f'\n{path},  time: {stop - start}, N = {N}, M = {M}, maxflow = {res}, maxflow_nx = {res_nx}')
+    print(f'{path},  time: {stop - start}, N = {N}, M = {M}, maxflow = {res}, maxflow_nx = {res_nx}')
     assert res == res_nx
 
     

@@ -9,7 +9,12 @@ class Graph:
     def add_edge(self, u, v, cap):
         if u not in self.adj_dict:
             self.adj_dict[u] = {}
-        self.adj_dict[u][v] = cap
+        
+        if self.adj_dict.get(u).get(v):
+            self.adj_dict[u][v] += cap
+        else:    
+            self.adj_dict[u][v] = cap
+        
         if v not in self.adj_dict:
             self.adj_dict[v] = {}
         if u not in self.adj_dict[v]:
@@ -53,11 +58,12 @@ class Graph:
 
             u = queue.popleft() 
           
-            for v, cap in self.adj_dict[u].items():
-                if not visited[v] and cap > 0:
-                    queue.append(v)
-                    parent[v] = u
-                    visited[v] =True
+            if self.adj_dict.get(u):
+                for v, cap in self.adj_dict[u].items():
+                    if not visited[v] and cap > 0:
+                        queue.append(v)
+                        parent[v] = u
+                        visited[v] =True
 
         return visited[target]
 
